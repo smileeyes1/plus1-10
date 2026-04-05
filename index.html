@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>دفتر تعلّمي</title>
+
+<style>
+/* ===== إعدادات عامة ===== */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f7f4;
+  font-family: "Amiri", serif;
+  color: #222;
+}
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 16px;
+}
+
+/* ===== بطاقة الطالب ===== */
+.profile {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #cfe4da;
+  margin-bottom: 10px;
+}
+
+.profile input[type="text"] {
+  width: 80%;
+  padding: 8px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.profile input[type="file"] {
+  margin-top: 10px;
+}
+
+/* ===== التقدم ===== */
+.progress {
+  background: #eef5f1;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #2b6b4f;
+}
+
+/* ===== الدرس ===== */
+.lesson {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.lesson h2 {
+  text-align: center;
+  color: #2b6b4f;
+}
+
+.lesson p {
+  font-size: 20px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ===== الأزرار ===== */
+.buttons {
+  text-align: center;
+}
+
+button {
+  background: #2b6b4f;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  margin: 6px;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #6c8f80;
+}
+
+button.danger {
+  background: #a84444;
+}
+
+/* ===== ملاحظات ===== */
+.note {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* ===== وضع الأمان ===== */
+.safe {
+  background: #fff4f4;
+  border: 2px dashed #dca3a3;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 16px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- بطاقة الطالب -->
+  <div class="profile">
+    <img id="studentPhoto" alt="صورتي">
+    <input type="file" accept="image/*" onchange="loadPhoto(event)">
+    <br>
+    <input type="text" id="studentName" placeholder="اكتب اسمك" onchange="saveName()">
+  </div>
+
+  <!-- التقدم -->
+  <div class="progress" id="progressBox"></div>
+
+  <!-- الدرس -->
+  <div class="lesson" id="lessonBox">
+    <h2 id="lessonTitle"></h2>
+    <p id="lessonText"></p>
+  </div>
+
+  <!-- أزرار -->
+  <div class="buttons">
+    <button onclick="nextLesson()">أكمل بهدوء</button>
+    <button class="secondary" onclick="safeMode()">أحتاج وقتًا</button>
+    <button class="danger" onclick="resetAll()">إعادة البداية</button>
+  </div>
+
+  <div class="note">
+    التعلّم خطوة خطوة، ولا يوجد استعجال 🌱
+  </div>
+
+  <!-- وضع الأمان -->
+  <div class="safe hidden" id="safeBox">
+    يمكنك التوقف الآن والعودة لاحقًا دون أي مشكلة 🤍
+  </div>
+
+</div>
+
+<script>
+/* ===== الدروس ===== */
+const lessons = [
+  {
+    title: "المجموعات المتساوية",
+    text: "نرى أشياء متشابهة في مجموعات. كل مجموعة تبدو مثل الأخرى."
+  },
+  {
+    title: "التكرار",
+    text: "نلاحظ أن العدد نفسه يتكرر في كل مجموعة."
+  },
+  {
+    title: "فكرة الضرب",
+    text: "عندما تتكرر المجموعات المتساوية، يمكننا استخدام الضرب."
+  },
+  {
+    title: "أنا أفهم",
+    text: "أستطيع أن أشرح المجموعات المتساوية بطريقتي."
+  }
+];
+
+/* ===== الحالة ===== */
+let currentLesson = Number(localStorage.getItem("lesson")) || 0;
+
+/* ===== تحميل الصفحة ===== */
+window.onload = function() {
+  loadProfile();
+  loadLesson();
+};
+
+/* ===== الملف الشخصي ===== */
+function loadProfile() {
+  const name = localStorage.getItem("name");
+  const photo = localStorage.getItem("photo");
+
+  if (name) document.getElementById("studentName").value = name;
+  if (photo) document.getElementById("studentPhoto").src = photo;
+}
+
+function saveName() {
+  localStorage.setItem("name", studentName.value);
+}
+
+function loadPhoto(event) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    studentPhoto.src = reader.result;
+    localStorage.setItem("photo", reader.result);
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+/* ===== الدروس ===== */
+function loadLesson() {
+  if (currentLesson >= lessons.length) {
+    lessonTitle.textContent = "أحسنت 🌟";
+    lessonText.textContent = "لقد مررتَ بكل الأفكار، ويمكنك المراجعة بهدوء.";
+  } else {
+    lessonTitle.textContent = lessons[currentLesson].title;
+    lessonText.textContent = lessons[currentLesson].text;
+  }
+
+  progressBox.textContent =
+    "أنت الآن عند الفكرة رقم " + (currentLesson + 1) + " من " + lessons.length;
+}
+
+function nextLesson() {
+  if (currentLesson < lessons.length) {
+    currentLesson++;
+    localStorage.setItem("lesson", currentLesson);
+    loadLesson();
+  }
+}
+
+/* ===== وضع الأمان ===== */
+function safeMode() {
+  safeBox.classList.toggle("hidden");
+}
+
+/* ===== إعادة تعيين ===== */
+function resetAll() {
+  if (confirm("هل تريد البدء من جديد؟")) {
+    localStorage.clear();
+    location.reload();
+  }
+}
+</script>
+
+</body>
+</html>
