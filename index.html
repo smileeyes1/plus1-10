@@ -2,178 +2,281 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>البرومبت الشامل – كتاب الرياضيات الصف الثاني</title>
+<title>الداعم الخبير للمعلم – رياضيات الصف الثاني</title>
 
 <style>
 body{
   margin:0;
   font-family:"Amiri", serif;
-  background:#f4f6f5;
-  line-height:2;
+  background:#f3f5f4;
+  line-height:2.1;
+  color:#222;
 }
 .container{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
-  padding:28px;
+  padding:32px;
 }
 header{
-  background:#124b3a;
+  background:#0f4b3a;
   color:white;
-  padding:26px;
+  padding:28px;
   border-radius:20px;
 }
-h1{margin:0}
-.notice{
-  font-size:15px;
-  opacity:.9;
+header h1{margin:0}
+header p{opacity:.9}
+
+.unit{
+  margin-top:40px;
+  padding-right:18px;
+  border-right:8px solid #0f4b3a;
 }
-section{
+.lesson{
   background:white;
   border-radius:18px;
   padding:24px;
-  margin-top:22px;
+  margin-top:24px;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
 }
-textarea{
-  width:100%;
-  min-height:600px;
-  font-size:16px;
-  line-height:2;
+.lesson h3{
+  color:#0f4b3a;
+  margin-top:0;
+}
+
+.box{
+  background:#eef5f2;
+  border-right:5px solid #7fae9f;
+  padding:14px 18px;
+  margin:12px 0;
   border-radius:14px;
-  border:1px solid #cfd7d3;
-  padding:20px;
-  resize:vertical;
 }
-button{
-  background:#124b3a;
-  color:white;
-  border:none;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:16px;
-  margin-top:12px;
+.label{
+  font-weight:bold;
+  color:#0f4b3a;
 }
-footer{
-  margin-top:20px;
-  background:#e7efec;
-  padding:14px;
-  border-radius:14px;
-  font-size:14px;
+.warning{
+  background:#fdecea;
+  border-right:5px solid #d04545;
+}
+.note{
+  background:#fff7e5;
+  border-right:5px solid #e0b14a;
+}
+.success{
+  background:#e8f6ed;
+  border-right:5px solid #3d8c5a;
 }
 </style>
-
-<script>
-function copyPrompt(){
-  const t = document.getElementById("prompt");
-  t.select();
-  t.setSelectionRange(0,999999);
-  document.execCommand("copy");
-  alert("تم نسخ البرومبت بنجاح");
-}
-</script>
 </head>
 
 <body>
 <div class="container">
 
 <header>
-<h1>📘 البرومبت الشامل – كتاب الرياضيات الصف الثاني</h1>
-<div class="notice">
-هذا الملف يحتوي البرومبت المُعتمد لإنتاج سيناريوهات الدروس  
-بالاستناد الكامل والحرفي لكتاب الرياضيات (maths2).
-</div>
+<h1>📘 الداعم الخبير للمعلم</h1>
+<p>
+نظام دعم مهني مبني على كتاب الرياضيات – الصف الثاني  
+لمرافقة المعلم في القرار، لا في الشرح.
+</p>
 </header>
 
-<section>
-<h2>البرومبت (جاهز للنسخ والاستخدام)</h2>
+<!-- ================= المبادئ العامة ================= -->
+<div class="unit">
+<h2>📌 مبادئ تشغيل الكتاب</h2>
 
-<textarea id="prompt">
+<div class="lesson">
+<div class="box">
+<span class="label">مبدأ خبير:</span><br>
+لا أُنجز الصفحة… بل أُمكّن المفهوم.
+</div>
 
-أنت تعمل كخبير تربوي متخصص في المرحلة الأساسية الأولى،
-وكمُتّخذ قرار لا كمُولّد محتوى.
+<div class="box">
+<span class="label">الترتيب في الكتاب مُلزِم:</span><br>
+لا جمع مع حمل قبل دون حمل، ولا ضرب قبل العد القفزي.
+</div>
 
-──────────────────────────────────
-المرجعية الملزمة
-──────────────────────────────────
-– كتاب الرياضيات للصف الثاني الأساسي (maths2)
-– الالتزام الكامل بـ:
-  • عناوين الوحدات كما وردت
-  • عناوين الدروس حرفيًا
-  • ترتيب الدروس كما في الكتاب
-  • كامل محتوى كل درس (نشاط، مثال، تدريب)
+<div class="warning box">
+<span class="label">خطر شائع:</span><br>
+السرعة تُظهر تقدّمًا وهميًا وتُخفِي ضعفًا حقيقيًا.
+</div>
+</div>
+</div>
 
-❌ ممنوع:
-– تغيير اسم أي درس
-– دمج الدروس
-– اختصار محتوى الدرس
-– إضافة نشاط غير موجود في الكتاب
-– القفز على أي جزء من الدرس
+<!-- ================= وحدة الأعداد ================= -->
+<div class="unit">
+<h2>وحدة الأعداد (ضمن 99 و 999)</h2>
 
-──────────────────────────────────
-دورك كخبير
-──────────────────────────────────
-– أنت لا تشرح للطالب
-– أنت تكتب سيناريو خفي للمعلم فقط
-– السيناريو يُقرأ حرفيًا داخل الحصة
-– لا يترك فراغًا إذا تشتّت المعلم
-– يقود الحصة خطوة بخطوة
+<div class="lesson">
+<h3>المقارنة بين عددين</h3>
 
-──────────────────────────────────
-مطلوب لكل درس
-──────────────────────────────────
-أن تُنتج سيناريو واحدًا كاملًا يحتوي بالترتيب:
+<div class="box">
+<span class="label">هدف الدرس الحقيقي:</span><br>
+التمييز حسب القيمة لا حسب الشكل.
+</div>
 
-1) تهيئة نفسية للمعلم
-2) افتتاح الحصة كما في سياق الدرس
-3) إدارة التفكير أثناء الأنشطة
-4) التعامل المهني مع الخطأ
-5) معيار التقدّم أو التوقّف
-6) إغلاق هادئ مستند لهدف الدرس
+<div class="box">
+<span class="label">ما أقول:</span><br>
+"أي العددين يمثّل كمية أكبر؟ كيف عرفت؟"
+</div>
 
-├ السيناريو موجّه للمعلم فقط
-├ مكتوب بضمير المتكلم
-├ غير مختصر
-├ غير إنشائي
-├ خالٍ من المخاطبة المباشرة للطلبة
+<div class="warning box">
+<span class="label">لا أفعل:</span><br>
+لا أستخدم (&gt; &lt; =) قبل الفهم.
+</div>
 
-──────────────────────────────────
-الضوابط التربوية
-──────────────────────────────────
-– وضوح قبل سرعة
-– فهم قبل إجراء
-– أمان نفسي قبل إنجاز
-– الخطأ تشخيص لا فشل
-– الصمت التربوي جزء من التدريس
+<div class="note box">
+<span class="label">أنتقل عندما:</span><br>
+يبرّر الطالب لفظيًا دون تردّد.
+</div>
+</div>
 
-──────────────────────────────────
-الذكاء الصناعي
-──────────────────────────────────
-– أنت تدعم قرار المعلم
-– لا تستبدله
-– تُصرّح بحدودك دائمًا
-– ترفض الأتمتة إذا أربكت الطفل
+<div class="lesson">
+<h3>العدد الزوجي والعدد الفردي</h3>
 
-──────────────────────────────────
-معيار النجاح
-──────────────────────────────────
-يُعد الإخراج ناجحًا فقط إذا:
-– كان السيناريو قابلًا للاستخدام دون تعديل
-– حافظ على تسلسل الدرس الحقيقي
-– وفّر طمأنينة للمعلم أثناء الحصة
-– لم يتجاوز أو يختصر الكتاب
+<div class="box">
+<span class="label">الفكرة:</span><br>
+التجميع اثنين-اثنين.
+</div>
 
-ابدأ بوحدة الكتاب الأولى،
-واكتب سيناريوهات الدروس واحدًا واحدًا،
-ولا تنتقل لدرس جديد حتى تُكمل الحالي.
-</textarea>
+<div class="warning box">
+<span class="label">خطأ شائع:</span><br>
+حفظ التعريف دون تجريب.
+</div>
+</div>
+</div>
 
-<button onclick="copyPrompt()">📋 نسخ البرومبت</button>
-</section>
+<!-- ================= وحدة الجمع والطرح ================= -->
+<div class="unit">
+<h2>وحدة الجمع والطرح</h2>
 
-<footer>
-هذا البرومبت يُستخدم كما هو مع أي نظام ذكاء صناعي  
-لإنتاج سيناريوهات دروس متطابقة مع كتاب maths2 دون اجتهاد.
-</footer>
+<div class="lesson">
+<h3>الجمع دون حمل</h3>
+
+<div class="box">
+<span class="label">الهدف:</span><br>
+جمع الآحاد والعشرات بدون تجاوز.
+</div>
+
+<div class="box">
+<span class="label">الدعم:</span><br>
+استخدم لوحة المنازل أو المحسوسات.
+</div>
+
+<div class="warning box">
+<span class="label">تدخّل فورًا إذا:</span><br>
+بدأ الطالب بالحمل تلقائيًا.
+</div>
+</div>
+
+<div class="lesson">
+<h3>الجمع مع الحمل</h3>
+
+<div class="box">
+<span class="label">الفكرة المحورية:</span><br>
+10 آحاد تعيد التنظيم لا “خطوة”.
+</div>
+
+<div class="note box">
+<span class="label">ما أقول:</span><br>
+"الآحاد أصبحت كثيرة، ماذا نفعل بها؟"
+</div>
+</div>
+
+<div class="lesson">
+<h3>الطرح دون / مع الاستلاف</h3>
+
+<div class="box">
+<span class="label">الهدف:</span><br>
+فهم النقصان قبل الخوارزمية.
+</div>
+
+<div class="success box">
+<span class="label">علامة نجاح:</span><br>
+الطالب يتحقق بالجمع تلقائيًا.
+</div>
+</div>
+</div>
+
+<!-- ================= وحدة الضرب والقسمة ================= -->
+<div class="unit">
+<h2>وحدة الضرب والقسمة</h2>
+
+<div class="lesson">
+<h3>العد القفزي</h3>
+
+<div class="box">
+<span class="label">دوره:</span><br>
+تمهيد منطقي للضرب.
+</div>
+
+<div class="warning box">
+<span class="label">لا:</span><br>
+لا أكتب جملة ضرب قبل النمط.
+</div>
+</div>
+
+<div class="lesson">
+<h3>مفهوم الضرب</h3>
+
+<div class="box">
+<span class="label">الفكرة:</span><br>
+مجموعات متساوية.
+</div>
+</div>
+
+<div class="lesson">
+<h3>مفهوم القسمة</h3>
+
+<div class="box">
+<span class="label">الأساس:</span><br>
+تقسيم بالتساوي باستخدام محسوسات.
+</div>
+</div>
+</div>
+
+<!-- ================= الهندسة والقياس والبيانات ================= -->
+<div class="unit">
+<h2>الهندسة – القياس – البيانات</h2>
+
+<div class="lesson">
+<h3>الأشكال الهندسية</h3>
+
+<div class="box">
+<span class="label">التركيز:</span><br>
+الخصائص (أضلاع – رؤوس).
+</div>
+</div>
+
+<div class="lesson">
+<h3>الطول والساعة</h3>
+
+<div class="box">
+<span class="label">مبدأ خبير:</span><br>
+نقارن ثم نقيس، نقرأ ثم نحسب.
+</div>
+</div>
+
+<div class="lesson">
+<h3>البيانات</h3>
+
+<div class="box">
+<span class="label">الهدف:</span><br>
+قراءة البيانات قبل تمثيلها.
+</div>
+</div>
+</div>
+
+<!-- ================= الإغلاق ================= -->
+<div class="unit">
+<h2>📍 تذكير خبير</h2>
+
+<div class="lesson">
+<div class="box">
+<span class="label">النجاح الحقيقي:</span><br>
+أن يفهم الطالب بطمأنينة، لا أن ينهي الصفحة.
+</div>
+</div>
+</div>
 
 </div>
 </body>
