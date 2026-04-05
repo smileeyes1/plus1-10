@@ -2,253 +2,237 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>الطريق الآمن للأرقام – النسخة المغلقة</title>
+<title>النظام السيادي الشامل – رياضيات الصف الثاني</title>
 
 <style>
-body{
-  margin:0;font-family:"Amiri",serif;background:#f3f6f4;
-}
-.container{max-width:620px;margin:auto;padding:20px}
-.panel{
-  background:#fff;border-radius:20px;padding:24px;
-  box-shadow:0 3px 10px rgba(0,0,0,.1);text-align:center
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Amiri",serif;background:#f3f6f4}
+.container{max-width:760px;margin:auto;padding:20px}
+.panel{background:#fff;border-radius:22px;padding:26px;box-shadow:0 3px 12px rgba(0,0,0,.12);text-align:center}
+.hidden{display:none}
 h1,h2{color:#2b6b4f}
 p{font-size:20px;line-height:1.9}
 button{
-  background:#2b6b4f;color:#fff;border:none;
-  border-radius:14px;padding:14px 26px;
-  margin-top:18px;font-size:18px;cursor:pointer
+  background:#2b6b4f;color:#fff;border:none;border-radius:16px;
+  padding:14px 30px;margin-top:16px;font-size:18px;cursor:pointer
 }
-button.secondary{background:#6b8f80}
-.hidden{display:none}
-.progress{
-  background:#e9f0ec;border-radius:12px;padding:12px;margin-bottom:20px;
-  font-size:18px;color:#2b6b4f
+button.alt{background:#6b8f80}
+.progress{background:#e9f0ec;border-radius:14px;padding:12px;margin-bottom:20px;font-size:18px;color:#2b6b4f}
+.notice{font-size:16px;color:#555;margin-top:14px}
+
+/* إشارات التفكير */
+.cue{
+  display:flex;align-items:center;gap:10px;
+  background:#eef4f1;border-radius:12px;
+  padding:8px 12px;margin:10px auto;max-width:520px
 }
-.notice{font-size:16px;color:#555;margin-top:16px}
-.footer{
-  text-align:center;margin-top:26px;font-size:14px;color:#999
-}
-.teacher-bar button{margin:6px}
-pre{
-  text-align:right;background:#f6f8f7;border-radius:10px;padding:12px;
-  overflow:auto;font-size:14px
-}
+.cue svg{width:28px;height:28px;fill:#2b6b4f}
+.cue-text{font-size:16px;color:#2b6b4f}
+
+/* المعلم */
+.footer{text-align:center;margin-top:24px;color:#999}
+.teacher-panel button{margin:6px}
+pre{background:#f6f8f7;border-radius:10px;padding:12px;font-size:14px;text-align:right}
 </style>
 </head>
 
 <body>
 <div class="container">
-  <div class="progress" id="progressBox"></div>
 
-  <!-- المسار المغلق للطالب -->
-  <div class="panel" id="step0">
-    <h1>🌱 الطريق الآمن للأرقام</h1>
-    <p>نمشي خطوة واحدة فقط. لا استعجال ولا قفز.</p>
-    <button onclick="safeNext()">ابدأ</button>
-  </div>
+<div class="progress" id="progress"></div>
 
-  <div class="panel hidden" id="step1">
-    <h2>👀 أنظر</h2>
-    <p>سليم يجمع ألعابه المتشابهة معًا.</p>
-    <button onclick="safeNext()">متابعة</button>
-  </div>
+<!-- المشاهد -->
+<div class="panel" id="scene0">
+  <h1>🌱 رحلة سليم مع الأرقام</h1>
+  <p>سنتعلّم خطوة خطوة. لا استعجال ولا قفز.</p>
+  <button onclick="next()">ابدأ</button>
+</div>
 
-  <div class="panel hidden" id="step2">
-    <h2>🧠 أفهم</h2>
-    <p>الأشياء المتشابهة نضعها في مجموعات.</p>
-    <button onclick="safeNext()">متابعة</button>
-  </div>
+<!-- ===== إشارات تفكير (تمهّل) ===== -->
+<div class="cue hidden" id="cueSlow">
+  <svg viewBox="0 0 24 24"><path d="M3 12h6l3-3 6 3-3 3H9z"/></svg>
+  <span class="cue-text">تمهّل قليلًا</span>
+</div>
 
-  <div class="panel hidden" id="step3">
-    <h2>🔢 العد</h2>
-    <p>نعد كل مجموعة بهدوء: واحد، اثنان، ثلاثة…</p>
-    <button onclick="safeNext()">متابعة</button>
+<!-- ===== الجمع ===== -->
+<div class="panel hidden" id="scene1">
+  <h2>➕ الجمع</h2>
+  <p>وجد سليم 3 كرات ثم وجد كرتين.</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M12 2c-4 6-4 12 0 20 4-8 4-14 0-20z"/></svg>
+    <span class="cue-text">عدم الفهم الآن طبيعي</span>
   </div>
+  <button onclick="next()">متابعة</button>
+</div>
 
-  <div class="panel hidden" id="step4">
-    <h2>➕ الجمع</h2>
-    <p>عندما نضع مجموعتين معًا، يصبح العدد أكبر.</p>
-    <button onclick="safeNext()">متابعة</button>
+<div class="panel hidden" id="scene2">
+  <p>عندما نضع الأشياء معًا، فإن العدد:</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2z"/></svg>
+    <span class="cue-text">هل نضيف أم نأخذ؟</span>
   </div>
+  <button onclick="check(true)">يزداد ✅</button><br>
+  <button onclick="check(false)">ينقص</button>
+</div>
 
-  <div class="panel hidden" id="step5">
-    <h2>➖ الطرح</h2>
-    <p>عندما نأخذ بعض الأشياء، يصبح العدد أقل.</p>
-    <button onclick="safeNext()">متابعة</button>
+<div class="panel hidden" id="scene3">
+  <p><b>الجمع</b> يعني إضافة الأشياء معًا.</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+    <span class="cue-text"><b>إذا لم أفهم، أعود إلى التمثيل</b></span>
   </div>
+  <button onclick="next()">متابعة</button>
+</div>
 
-  <div class="panel hidden" id="step6">
-    <h2>✖️ الضرب</h2>
-    <p>عندما تتكرر نفس المجموعات، نستخدم الضرب.</p>
-    <button onclick="safeNext()">متابعة</button>
-  </div>
+<!-- ===== الطرح ===== -->
+<div class="panel hidden" id="scene4">
+  <h2>➖ الطرح</h2>
+  <p>كان مع سليم 6 أقلام، أعطى صديقه قلمًا.</p>
+  <button onclick="next()">متابعة</button>
+</div>
 
-  <div class="panel hidden" id="step7">
-    <h2>➗ القسمة</h2>
-    <p>نقسّم الأشياء بالتساوي بين الأصدقاء.</p>
-    <button onclick="safeNext()">متابعة</button>
+<div class="panel hidden" id="scene5">
+  <p>عندما نأخذ من العدد، فإن العدد:</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2z"/></svg>
+    <span class="cue-text">هل نضيف أم نأخذ؟</span>
   </div>
+  <button onclick="check(true)">ينقص ✅</button><br>
+  <button onclick="check(false)">يزداد</button>
+</div>
 
-  <div class="panel hidden" id="step8">
-    <h2>🎉 أحسنت</h2>
-    <p>أنهيت الطريق كاملًا وفهمت الأساسيات.</p>
-    <p class="notice">يمكنك العودة متى شئت.</p>
+<div class="panel hidden" id="scene6">
+  <p><b>الطرح</b> يعني أن نأخذ من الأشياء.</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+    <span class="cue-text"><b>إذا لم أفهم، أعود إلى التمثيل</b></span>
   </div>
+  <button onclick="next()">متابعة</button>
+</div>
 
-  <!-- زر وضع المعلم (مخفي للطالب) -->
-  <div class="footer">
-    <span onclick="askTeacherMode()">⚙️</span>
+<!-- ===== الضرب ===== -->
+<div class="panel hidden" id="scene7">
+  <h2>✖️ الضرب</h2>
+  <p>رأى سليم مجموعات متشابهة تتكرر.</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2z"/></svg>
+    <span class="cue-text">هل هذا تكرار أم زيادة؟</span>
   </div>
+  <button onclick="next()">متابعة</button>
+</div>
 
-  <!-- لوحة تحكم المعلم -->
-  <div class="panel hidden" id="teacherPanel">
-    <h2>👨‍🏫 وضع المعلم</h2>
-    <p>تنقّل وتحكّم ومتابعة (لا يراه الطالب).</p>
-    <div class="teacher-bar" id="teacherButtons"></div>
-    <h3>📊 ملخّص المتابعة</h3>
-    <pre id="status">—</pre>
-    <button class="secondary" onclick="exportReport()">⬇️ تصدير تقرير</button>
-    <button onclick="exitTeacherMode()">إغلاق وضع المعلم</button>
+<div class="panel hidden" id="scene8">
+  <p><b>الضرب</b> نستخدمه عند تكرار مجموعات متساوية.</p>
+  <button onclick="next()">متابعة</button>
+</div>
+
+<!-- ===== القياس ===== -->
+<div class="panel hidden" id="scene9">
+  <h2>📏 القياس</h2>
+  <p>قارن سليم طول عصوين وكتلة حقيبتين.</p>
+  <div class="cue">
+    <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2z"/></svg>
+    <span class="cue-text">هل نقارن أم نحسب؟</span>
   </div>
+  <button onclick="next()">متابعة</button>
+</div>
+
+<div class="panel hidden" id="scene10">
+  <p><b>القياس</b> يعني المقارنة.</p>
+  <button onclick="next()">متابعة</button>
+</div>
+
+<!-- ===== المراجعة ===== -->
+<div class="panel hidden" id="scene11">
+  <h2>🔄 المراجعة الشاملة</h2>
+  <p>سنراجع الأفكار الأساسية بهدوء.</p>
+  <button onclick="next()">ابدأ</button>
+</div>
+
+<div class="panel hidden" id="scene12">
+  <p>هل نستخدم الجمع عند وضع الأشياء معًا؟</p>
+  <button onclick="next()">نعم ✅</button>
+</div>
+
+<div class="panel hidden" id="scene13">
+  <p>هل نستخدم الضرب عند تكرار مجموعات متساوية؟</p>
+  <button onclick="next()">نعم ✅</button>
+</div>
+
+<div class="panel hidden" id="scene14">
+  <p>هل نستخدم القياس عند المقارنة؟</p>
+  <button onclick="next()">نعم ✅</button>
+</div>
+
+<!-- ===== النهاية ===== -->
+<div class="panel hidden" id="scene15">
+  <h2>🎉 أحسنت!</h2>
+  <p>أنهيت الرحلة وفهمت الأساسيات.</p>
+  <p class="notice">الفهم أهم من العلامة.</p>
+</div>
+
+<!-- زر المعلم -->
+<div class="footer">
+  <span onclick="teacherMode()">⚙️</span>
+</div>
+
+<!-- لوحة المعلم -->
+<div class="panel hidden teacher-panel" id="teacherPanel">
+  <h2>👨‍🏫 وضع المعلم</h2>
+  <div id="teacherButtons"></div>
+  <pre id="report"></pre>
+  <button class="alt" onclick="exitTeacher()">إغلاق</button>
+</div>
+
 </div>
 
 <script>
-/* =========================
-   إعدادات وأمان المسار
-   ========================= */
-const TEACHER_PIN = "2468"; // غيّر الرمز إن رغبت
-
-const steps = [
-  {id:0,name:"البداية",minTime:5000},
-  {id:1,name:"المجموعات",minTime:6000},
-  {id:2,name:"الفهم",minTime:6000},
-  {id:3,name:"العد",minTime:7000},
-  {id:4,name:"الجمع",minTime:7000},
-  {id:5,name:"الطرح",minTime:7000},
-  {id:6,name:"الضرب",minTime:8000},
-  {id:7,name:"القسمة",minTime:8000},
-  {id:8,name:"النهاية",minTime:0}
-];
-
-let current = Number(localStorage.getItem("lockedStep")) || 0;
-let enteredAt = Date.now();
-
-// تتبّع تربوي آمن (محلي فقط)
-let revisits = Number(localStorage.getItem("revisits") || 0);
-let lastUse = localStorage.getItem("lastUse") || "—";
-
-/* =========================
-   تحميل الحالة
-   ========================= */
-load(current);
+const PIN="2468";
+let i=Number(localStorage.getItem("i"))||0;
+let t=Date.now();
+const total=16;
+load(i);
 
 function load(n){
-  document.querySelectorAll(".panel").forEach(p=>p.classList.add("hidden"));
-  document.getElementById("step"+n).classList.remove("hidden");
-  enteredAt = Date.now();
-  current = n;
-  localStorage.setItem("lockedStep", n);
-  localStorage.setItem("lastUse", new Date().toLocaleString());
-  updateProgress();
-  logProgress();
+  hideAll();
+  document.getElementById("scene"+n).classList.remove("hidden");
+  document.getElementById("cueSlow").classList.toggle("hidden",false);
+  t=Date.now();
+  progress.innerText=`المرحلة ${n+1} من ${total}`;
+  localStorage.setItem("i",n);
 }
 
-/* =========================
-   الانتقال الآمن للطالب
-   ========================= */
-function safeNext(){
-  const now = Date.now();
-  const need = steps[current].minTime;
-  if(now - enteredAt < need){
-    revisits++;
-    localStorage.setItem("revisits", revisits);
-    alert("تمهّل 🌿 خذ وقتك");
-    return;
+function next(){
+  if(Date.now()-t<2500){alert("تمهّل 🌿");return;}
+  if(i<total-1){i++;load(i);}
+}
+
+function check(ok){
+  if(ok){next();}
+  else{alert("انظر إلى التمثيل مرة أخرى");}
+}
+
+function hideAll(){
+  document.querySelectorAll(".panel,.cue").forEach(e=>e.classList.add("hidden"));
+}
+
+function teacherMode(){
+  const p=prompt("رمز المعلم:");
+  if(p!==PIN)return;
+  hideAll();
+  teacherPanel.classList.remove("hidden");
+  teacherButtons.innerHTML="";
+  for(let k=0;k<total;k++){
+    const b=document.createElement("button");
+    b.textContent="انتقال "+(k+1);
+    b.onclick=()=>{i=k;load(i);};
+    teacherButtons.appendChild(b);
   }
-  if(current < steps.length - 1){
-    load(current + 1);
-  }
+  report.innerText="آخر مرحلة: "+(i+1);
 }
 
-/* =========================
-   عرض التقدم
-   ========================= */
-function updateProgress(){
-  progressBox.innerText = "أنت الآن في: " + steps[current].name;
-}
-
-/* =========================
-   تسجيل متابعة مفاهيمية
-   ========================= */
-function logProgress(){
-  const log = {
-    step: steps[current].name,
-    stepIndex: current,
-    revisits: revisits,
-    lastUse: localStorage.getItem("lastUse")
-  };
-  localStorage.setItem("student_log", JSON.stringify(log));
-}
-
-/* =========================
-   وضع المعلم
-   ========================= */
-function askTeacherMode(){
-  const pin = prompt("أدخل رمز المعلم:");
-  if(pin === TEACHER_PIN){
-    openTeacherMode();
-  }else{
-    alert("الرمز غير صحيح");
-  }
-}
-
-function openTeacherMode(){
-  document.querySelectorAll(".panel").forEach(p=>p.classList.add("hidden"));
-  document.getElementById("teacherPanel").classList.remove("hidden");
-  const container = document.getElementById("teacherButtons");
-  container.innerHTML = "";
-  steps.forEach(s=>{
-    const b = document.createElement("button");
-    b.textContent = "انتقال إلى: " + s.name;
-    b.onclick = ()=> load(s.id);
-    container.appendChild(b);
-  });
-  showStatus();
-}
-
-function exitTeacherMode(){
-  document.getElementById("teacherPanel").classList.add("hidden");
-  load(current);
-}
-
-/* =========================
-   حالة الطالب للمعلم
-   ========================= */
-function showStatus(){
-  const data = JSON.parse(localStorage.getItem("student_log"));
-  if(!data){
-    status.textContent = "لا يوجد نشاط مسجل بعد.";
-    return;
-  }
-  status.textContent =
-    "المرحلة الحالية: " + data.step +
-    "\nعدد الرجوع/التمهّل: " + data.revisits +
-    "\nآخر استخدام: " + data.lastUse;
-}
-
-/* =========================
-   تصدير تقرير
-   ========================= */
-function exportReport(){
-  const data = JSON.parse(localStorage.getItem("student_log")) || {};
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "student-report.json";
-  a.click();
-}
+function exitTeacher(){load(i);}
 </script>
+
 </body>
 </html>
