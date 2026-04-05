@@ -2,237 +2,253 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>نظام التعلم الذكي</title>
+<title>الطريق الآمن للأرقام – النسخة المغلقة</title>
 
 <style>
-body {
-  margin:0;
-  font-family:"Amiri", serif;
-  background:#f3f6f4;
+body{
+  margin:0;font-family:"Amiri",serif;background:#f3f6f4;
 }
-
-.container {
-  max-width:520px;
-  margin:auto;
-  padding:20px;
+.container{max-width:620px;margin:auto;padding:20px}
+.panel{
+  background:#fff;border-radius:20px;padding:24px;
+  box-shadow:0 3px 10px rgba(0,0,0,.1);text-align:center
 }
-
-.card {
-  background:#ffffff;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  text-align:center;
+h1,h2{color:#2b6b4f}
+p{font-size:20px;line-height:1.9}
+button{
+  background:#2b6b4f;color:#fff;border:none;
+  border-radius:14px;padding:14px 26px;
+  margin-top:18px;font-size:18px;cursor:pointer
 }
-
-h1,h2 {
-  color:#2b6b4f;
+button.secondary{background:#6b8f80}
+.hidden{display:none}
+.progress{
+  background:#e9f0ec;border-radius:12px;padding:12px;margin-bottom:20px;
+  font-size:18px;color:#2b6b4f
 }
-
-p {
-  font-size:20px;
-  line-height:1.8;
+.notice{font-size:16px;color:#555;margin-top:16px}
+.footer{
+  text-align:center;margin-top:26px;font-size:14px;color:#999
 }
-
-button {
-  background:#2b6b4f;
-  color:#fff;
-  border:none;
-  border-radius:12px;
-  padding:12px 22px;
-  margin:10px;
-  font-size:18px;
-  cursor:pointer;
-}
-
-.secondary {
-  background:#6b8f80;
-}
-
-.hidden {
-  display:none;
-}
-
-.progress {
-  background:#eef4f1;
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:16px;
-  font-size:18px;
-  color:#2b6b4f;
-}
-.note {
-  font-size:16px;
-  color:#555;
-  margin-top:14px;
+.teacher-bar button{margin:6px}
+pre{
+  text-align:right;background:#f6f8f7;border-radius:10px;padding:12px;
+  overflow:auto;font-size:14px
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
+  <div class="progress" id="progressBox"></div>
 
-<div id="progress" class="progress"></div>
+  <!-- المسار المغلق للطالب -->
+  <div class="panel" id="step0">
+    <h1>🌱 الطريق الآمن للأرقام</h1>
+    <p>نمشي خطوة واحدة فقط. لا استعجال ولا قفز.</p>
+    <button onclick="safeNext()">ابدأ</button>
+  </div>
 
-<!-- المرحلة 0 -->
-<div class="card" id="s0">
-<h1>نبدأ بهدوء</h1>
-<p>
-هذا النظام يساعدك على الفهم بطريقتك الخاصة.<br>
-خذ وقتك.
-</p>
-<button onclick="go(1)">أبدأ</button>
-</div>
+  <div class="panel hidden" id="step1">
+    <h2>👀 أنظر</h2>
+    <p>سليم يجمع ألعابه المتشابهة معًا.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- المرحلة 1 – بصري -->
-<div class="card hidden" id="s1">
-<h2>ننظر أولًا</h2>
-<p>
-تخيّل مجموعات من الأشياء.<br>
-كل مجموعة تشبه الأخرى تمامًا.
-</p>
-<button onclick="next('visual')">تابع</button>
-</div>
+  <div class="panel hidden" id="step2">
+    <h2>🧠 أفهم</h2>
+    <p>الأشياء المتشابهة نضعها في مجموعات.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- المرحلة 2 – لغوي -->
-<div class="card hidden" id="s2">
-<h2>نشرح بالكلام</h2>
-<p>
-إذا كانت كل المجموعات متشابهة،<br>
-فإن نفس العدد يتكرر.
-</p>
-<button onclick="next('verbal')">تابع</button>
-</div>
+  <div class="panel hidden" id="step3">
+    <h2>🔢 العد</h2>
+    <p>نعد كل مجموعة بهدوء: واحد، اثنان، ثلاثة…</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- المرحلة 3 – قصة -->
-<div class="card hidden" id="s3">
-<h2>نفهم بالقصة</h2>
-<p>
-لدى سامي ثلاث علب.<br>
-في كل علبة نفس العدد من الكرات.
-</p>
-<button onclick="next('story')">تابع</button>
-</div>
+  <div class="panel hidden" id="step4">
+    <h2>➕ الجمع</h2>
+    <p>عندما نضع مجموعتين معًا، يصبح العدد أكبر.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- التحقق الذكي -->
-<div class="card hidden" id="check">
-<h2>توقف قصير</h2>
-<p>
-أي تفسير أقرب لما فهمته؟
-</p>
-<button onclick="judge('right')">الضرب يصف التكرار المتساوي</button>
-<button class="secondary" onclick="judge('confused')">لست متأكدًا بعد</button>
-</div>
+  <div class="panel hidden" id="step5">
+    <h2>➖ الطرح</h2>
+    <p>عندما نأخذ بعض الأشياء، يصبح العدد أقل.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- إعادة علاج -->
-<div class="card hidden" id="repair">
-<h2>لنعد بهدوء</h2>
-<p>
-أحيانًا نحتاج زاوية أخرى للفهم.<br>
-لا مشكلة في ذلك.
-</p>
-<button onclick="retry()">أعد المحاولة</button>
-</div>
+  <div class="panel hidden" id="step6">
+    <h2>✖️ الضرب</h2>
+    <p>عندما تتكرر نفس المجموعات، نستخدم الضرب.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
-<!-- النجاح -->
-<div class="card hidden" id="done">
-<h2>أحسنت 🌱</h2>
-<p>
-الآن أصبحت الفكرة أوضح.<br>
-يمكنك العودة للدرس بثقة.
-</p>
-<p class="note">
-الفهم أهم من السرعة.
-</p>
-</div>
+  <div class="panel hidden" id="step7">
+    <h2>➗ القسمة</h2>
+    <p>نقسّم الأشياء بالتساوي بين الأصدقاء.</p>
+    <button onclick="safeNext()">متابعة</button>
+  </div>
 
+  <div class="panel hidden" id="step8">
+    <h2>🎉 أحسنت</h2>
+    <p>أنهيت الطريق كاملًا وفهمت الأساسيات.</p>
+    <p class="notice">يمكنك العودة متى شئت.</p>
+  </div>
+
+  <!-- زر وضع المعلم (مخفي للطالب) -->
+  <div class="footer">
+    <span onclick="askTeacherMode()">⚙️</span>
+  </div>
+
+  <!-- لوحة تحكم المعلم -->
+  <div class="panel hidden" id="teacherPanel">
+    <h2>👨‍🏫 وضع المعلم</h2>
+    <p>تنقّل وتحكّم ومتابعة (لا يراه الطالب).</p>
+    <div class="teacher-bar" id="teacherButtons"></div>
+    <h3>📊 ملخّص المتابعة</h3>
+    <pre id="status">—</pre>
+    <button class="secondary" onclick="exportReport()">⬇️ تصدير تقرير</button>
+    <button onclick="exitTeacherMode()">إغلاق وضع المعلم</button>
+  </div>
 </div>
 
 <script>
-/* ===== محرك الملاحظة ===== */
-let signals = {
-  rewind: 0,
-  fast: 0
-};
+/* =========================
+   إعدادات وأمان المسار
+   ========================= */
+const TEACHER_PIN = "2468"; // غيّر الرمز إن رغبت
 
-/* ===== الحالة ===== */
-let step = Number(localStorage.getItem("step")) || 0;
-render(step);
+const steps = [
+  {id:0,name:"البداية",minTime:5000},
+  {id:1,name:"المجموعات",minTime:6000},
+  {id:2,name:"الفهم",minTime:6000},
+  {id:3,name:"العد",minTime:7000},
+  {id:4,name:"الجمع",minTime:7000},
+  {id:5,name:"الطرح",minTime:7000},
+  {id:6,name:"الضرب",minTime:8000},
+  {id:7,name:"القسمة",minTime:8000},
+  {id:8,name:"النهاية",minTime:0}
+];
 
-/* ===== الانتقال ===== */
-function go(n) {
-  saveStep(n);
-  render(n);
+let current = Number(localStorage.getItem("lockedStep")) || 0;
+let enteredAt = Date.now();
+
+// تتبّع تربوي آمن (محلي فقط)
+let revisits = Number(localStorage.getItem("revisits") || 0);
+let lastUse = localStorage.getItem("lastUse") || "—";
+
+/* =========================
+   تحميل الحالة
+   ========================= */
+load(current);
+
+function load(n){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.add("hidden"));
+  document.getElementById("step"+n).classList.remove("hidden");
+  enteredAt = Date.now();
+  current = n;
+  localStorage.setItem("lockedStep", n);
+  localStorage.setItem("lastUse", new Date().toLocaleString());
+  updateProgress();
+  logProgress();
 }
 
-/* ===== عرض ===== */
-function render(n) {
-  document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));
-  document.getElementById("s"+n)?.classList.remove("hidden");
-  document.getElementById("check")?.classList.toggle("hidden", n!==4);
-  document.getElementById("repair")?.classList.add("hidden");
-  document.getElementById("done")?.classList.add("hidden");
-  updateProgress(n);
-}
-
-/* ===== تقدم ===== */
-function updateProgress(n) {
-  const labels = [
-    "البدء",
-    "تمييز المجموعات",
-    "فهم التكرار",
-    "ربط المفهوم",
-    "التحقق",
-    "الإنجاز"
-  ];
-  progress.innerText = "المرحلة الحالية: " + labels[n];
-}
-
-/* ===== الانتقال الذكي ===== */
-function next(mode) {
-  if (mode === 'visual' && signals.fast > 0) {
-    signals.rewind++;
-    go(3);
+/* =========================
+   الانتقال الآمن للطالب
+   ========================= */
+function safeNext(){
+  const now = Date.now();
+  const need = steps[current].minTime;
+  if(now - enteredAt < need){
+    revisits++;
+    localStorage.setItem("revisits", revisits);
+    alert("تمهّل 🌿 خذ وقتك");
     return;
   }
-  if (mode === 'verbal') signals.fast++;
-  go(step + 1);
-}
-
-/* ===== التحقق ===== */
-function judge(result) {
-  if (result === 'right') {
-    goDone();
-  } else {
-    signals.rewind++;
-    document.getElementById("check").classList.add("hidden");
-    document.getElementById("repair").classList.remove("hidden");
+  if(current < steps.length - 1){
+    load(current + 1);
   }
 }
 
-/* ===== إعادة علاج ===== */
-function retry() {
-  if (signals.rewind >= 2) {
-    go(1);
-  } else {
-    go(2);
+/* =========================
+   عرض التقدم
+   ========================= */
+function updateProgress(){
+  progressBox.innerText = "أنت الآن في: " + steps[current].name;
+}
+
+/* =========================
+   تسجيل متابعة مفاهيمية
+   ========================= */
+function logProgress(){
+  const log = {
+    step: steps[current].name,
+    stepIndex: current,
+    revisits: revisits,
+    lastUse: localStorage.getItem("lastUse")
+  };
+  localStorage.setItem("student_log", JSON.stringify(log));
+}
+
+/* =========================
+   وضع المعلم
+   ========================= */
+function askTeacherMode(){
+  const pin = prompt("أدخل رمز المعلم:");
+  if(pin === TEACHER_PIN){
+    openTeacherMode();
+  }else{
+    alert("الرمز غير صحيح");
   }
 }
 
-/* ===== نجاح ===== */
-function goDone() {
-  document.getElementById("check").classList.add("hidden");
-  document.getElementById("done").classList.remove("hidden");
-  localStorage.setItem("achieved","true");
+function openTeacherMode(){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.add("hidden"));
+  document.getElementById("teacherPanel").classList.remove("hidden");
+  const container = document.getElementById("teacherButtons");
+  container.innerHTML = "";
+  steps.forEach(s=>{
+    const b = document.createElement("button");
+    b.textContent = "انتقال إلى: " + s.name;
+    b.onclick = ()=> load(s.id);
+    container.appendChild(b);
+  });
+  showStatus();
 }
 
-/* ===== حفظ ===== */
-function saveStep(n){
-  step = n;
-  localStorage.setItem("step", n);
+function exitTeacherMode(){
+  document.getElementById("teacherPanel").classList.add("hidden");
+  load(current);
+}
+
+/* =========================
+   حالة الطالب للمعلم
+   ========================= */
+function showStatus(){
+  const data = JSON.parse(localStorage.getItem("student_log"));
+  if(!data){
+    status.textContent = "لا يوجد نشاط مسجل بعد.";
+    return;
+  }
+  status.textContent =
+    "المرحلة الحالية: " + data.step +
+    "\nعدد الرجوع/التمهّل: " + data.revisits +
+    "\nآخر استخدام: " + data.lastUse;
+}
+
+/* =========================
+   تصدير تقرير
+   ========================= */
+function exportReport(){
+  const data = JSON.parse(localStorage.getItem("student_log")) || {};
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "student-report.json";
+  a.click();
 }
 </script>
-
 </body>
 </html>
