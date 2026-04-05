@@ -2,128 +2,69 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>دفتر تعلّمي</title>
+<title>نظام التعلم الذكي</title>
 
 <style>
-/* ===== إعدادات عامة ===== */
 body {
-  margin: 0;
-  padding: 0;
-  background: #f5f7f4;
-  font-family: "Amiri", serif;
-  color: #222;
+  margin:0;
+  font-family:"Amiri", serif;
+  background:#f3f6f4;
 }
 
 .container {
-  max-width: 480px;
-  margin: auto;
-  padding: 16px;
+  max-width:520px;
+  margin:auto;
+  padding:20px;
 }
 
-/* ===== بطاقة الطالب ===== */
-.profile {
-  text-align: center;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+.card {
+  background:#ffffff;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  text-align:center;
 }
 
-.profile img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #cfe4da;
-  margin-bottom: 10px;
+h1,h2 {
+  color:#2b6b4f;
 }
 
-.profile input[type="text"] {
-  width: 80%;
-  padding: 8px;
-  font-size: 18px;
-  text-align: center;
-}
-
-.profile input[type="file"] {
-  margin-top: 10px;
-}
-
-/* ===== التقدم ===== */
-.progress {
-  background: #eef5f1;
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #2b6b4f;
-}
-
-/* ===== الدرس ===== */
-.lesson {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.lesson h2 {
-  text-align: center;
-  color: #2b6b4f;
-}
-
-.lesson p {
-  font-size: 20px;
-  line-height: 1.8;
-  text-align: center;
-}
-
-/* ===== الأزرار ===== */
-.buttons {
-  text-align: center;
+p {
+  font-size:20px;
+  line-height:1.8;
 }
 
 button {
-  background: #2b6b4f;
-  color: #fff;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
-  margin: 6px;
-  cursor: pointer;
+  background:#2b6b4f;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:12px 22px;
+  margin:10px;
+  font-size:18px;
+  cursor:pointer;
 }
 
-button.secondary {
-  background: #6c8f80;
-}
-
-button.danger {
-  background: #a84444;
-}
-
-/* ===== ملاحظات ===== */
-.note {
-  font-size: 16px;
-  color: #555;
-  text-align: center;
-  margin-top: 14px;
-}
-
-/* ===== وضع الأمان ===== */
-.safe {
-  background: #fff4f4;
-  border: 2px dashed #dca3a3;
-  padding: 14px;
-  border-radius: 12px;
-  margin-top: 16px;
+.secondary {
+  background:#6b8f80;
 }
 
 .hidden {
-  display: none;
+  display:none;
+}
+
+.progress {
+  background:#eef4f1;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:16px;
+  font-size:18px;
+  color:#2b6b4f;
+}
+.note {
+  font-size:16px;
+  color:#555;
+  margin-top:14px;
 }
 </style>
 </head>
@@ -132,126 +73,164 @@ button.danger {
 
 <div class="container">
 
-  <!-- بطاقة الطالب -->
-  <div class="profile">
-    <img id="studentPhoto" alt="صورتي">
-    <input type="file" accept="image/*" onchange="loadPhoto(event)">
-    <br>
-    <input type="text" id="studentName" placeholder="اكتب اسمك" onchange="saveName()">
-  </div>
+<div id="progress" class="progress"></div>
 
-  <!-- التقدم -->
-  <div class="progress" id="progressBox"></div>
+<!-- المرحلة 0 -->
+<div class="card" id="s0">
+<h1>نبدأ بهدوء</h1>
+<p>
+هذا النظام يساعدك على الفهم بطريقتك الخاصة.<br>
+خذ وقتك.
+</p>
+<button onclick="go(1)">أبدأ</button>
+</div>
 
-  <!-- الدرس -->
-  <div class="lesson" id="lessonBox">
-    <h2 id="lessonTitle"></h2>
-    <p id="lessonText"></p>
-  </div>
+<!-- المرحلة 1 – بصري -->
+<div class="card hidden" id="s1">
+<h2>ننظر أولًا</h2>
+<p>
+تخيّل مجموعات من الأشياء.<br>
+كل مجموعة تشبه الأخرى تمامًا.
+</p>
+<button onclick="next('visual')">تابع</button>
+</div>
 
-  <!-- أزرار -->
-  <div class="buttons">
-    <button onclick="nextLesson()">أكمل بهدوء</button>
-    <button class="secondary" onclick="safeMode()">أحتاج وقتًا</button>
-    <button class="danger" onclick="resetAll()">إعادة البداية</button>
-  </div>
+<!-- المرحلة 2 – لغوي -->
+<div class="card hidden" id="s2">
+<h2>نشرح بالكلام</h2>
+<p>
+إذا كانت كل المجموعات متشابهة،<br>
+فإن نفس العدد يتكرر.
+</p>
+<button onclick="next('verbal')">تابع</button>
+</div>
 
-  <div class="note">
-    التعلّم خطوة خطوة، ولا يوجد استعجال 🌱
-  </div>
+<!-- المرحلة 3 – قصة -->
+<div class="card hidden" id="s3">
+<h2>نفهم بالقصة</h2>
+<p>
+لدى سامي ثلاث علب.<br>
+في كل علبة نفس العدد من الكرات.
+</p>
+<button onclick="next('story')">تابع</button>
+</div>
 
-  <!-- وضع الأمان -->
-  <div class="safe hidden" id="safeBox">
-    يمكنك التوقف الآن والعودة لاحقًا دون أي مشكلة 🤍
-  </div>
+<!-- التحقق الذكي -->
+<div class="card hidden" id="check">
+<h2>توقف قصير</h2>
+<p>
+أي تفسير أقرب لما فهمته؟
+</p>
+<button onclick="judge('right')">الضرب يصف التكرار المتساوي</button>
+<button class="secondary" onclick="judge('confused')">لست متأكدًا بعد</button>
+</div>
+
+<!-- إعادة علاج -->
+<div class="card hidden" id="repair">
+<h2>لنعد بهدوء</h2>
+<p>
+أحيانًا نحتاج زاوية أخرى للفهم.<br>
+لا مشكلة في ذلك.
+</p>
+<button onclick="retry()">أعد المحاولة</button>
+</div>
+
+<!-- النجاح -->
+<div class="card hidden" id="done">
+<h2>أحسنت 🌱</h2>
+<p>
+الآن أصبحت الفكرة أوضح.<br>
+يمكنك العودة للدرس بثقة.
+</p>
+<p class="note">
+الفهم أهم من السرعة.
+</p>
+</div>
 
 </div>
 
 <script>
-/* ===== الدروس ===== */
-const lessons = [
-  {
-    title: "المجموعات المتساوية",
-    text: "نرى أشياء متشابهة في مجموعات. كل مجموعة تبدو مثل الأخرى."
-  },
-  {
-    title: "التكرار",
-    text: "نلاحظ أن العدد نفسه يتكرر في كل مجموعة."
-  },
-  {
-    title: "فكرة الضرب",
-    text: "عندما تتكرر المجموعات المتساوية، يمكننا استخدام الضرب."
-  },
-  {
-    title: "أنا أفهم",
-    text: "أستطيع أن أشرح المجموعات المتساوية بطريقتي."
-  }
-];
-
-/* ===== الحالة ===== */
-let currentLesson = Number(localStorage.getItem("lesson")) || 0;
-
-/* ===== تحميل الصفحة ===== */
-window.onload = function() {
-  loadProfile();
-  loadLesson();
+/* ===== محرك الملاحظة ===== */
+let signals = {
+  rewind: 0,
+  fast: 0
 };
 
-/* ===== الملف الشخصي ===== */
-function loadProfile() {
-  const name = localStorage.getItem("name");
-  const photo = localStorage.getItem("photo");
+/* ===== الحالة ===== */
+let step = Number(localStorage.getItem("step")) || 0;
+render(step);
 
-  if (name) document.getElementById("studentName").value = name;
-  if (photo) document.getElementById("studentPhoto").src = photo;
+/* ===== الانتقال ===== */
+function go(n) {
+  saveStep(n);
+  render(n);
 }
 
-function saveName() {
-  localStorage.setItem("name", studentName.value);
+/* ===== عرض ===== */
+function render(n) {
+  document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));
+  document.getElementById("s"+n)?.classList.remove("hidden");
+  document.getElementById("check")?.classList.toggle("hidden", n!==4);
+  document.getElementById("repair")?.classList.add("hidden");
+  document.getElementById("done")?.classList.add("hidden");
+  updateProgress(n);
 }
 
-function loadPhoto(event) {
-  const reader = new FileReader();
-  reader.onload = () => {
-    studentPhoto.src = reader.result;
-    localStorage.setItem("photo", reader.result);
-  };
-  reader.readAsDataURL(event.target.files[0]);
+/* ===== تقدم ===== */
+function updateProgress(n) {
+  const labels = [
+    "البدء",
+    "تمييز المجموعات",
+    "فهم التكرار",
+    "ربط المفهوم",
+    "التحقق",
+    "الإنجاز"
+  ];
+  progress.innerText = "المرحلة الحالية: " + labels[n];
 }
 
-/* ===== الدروس ===== */
-function loadLesson() {
-  if (currentLesson >= lessons.length) {
-    lessonTitle.textContent = "أحسنت 🌟";
-    lessonText.textContent = "لقد مررتَ بكل الأفكار، ويمكنك المراجعة بهدوء.";
+/* ===== الانتقال الذكي ===== */
+function next(mode) {
+  if (mode === 'visual' && signals.fast > 0) {
+    signals.rewind++;
+    go(3);
+    return;
+  }
+  if (mode === 'verbal') signals.fast++;
+  go(step + 1);
+}
+
+/* ===== التحقق ===== */
+function judge(result) {
+  if (result === 'right') {
+    goDone();
   } else {
-    lessonTitle.textContent = lessons[currentLesson].title;
-    lessonText.textContent = lessons[currentLesson].text;
-  }
-
-  progressBox.textContent =
-    "أنت الآن عند الفكرة رقم " + (currentLesson + 1) + " من " + lessons.length;
-}
-
-function nextLesson() {
-  if (currentLesson < lessons.length) {
-    currentLesson++;
-    localStorage.setItem("lesson", currentLesson);
-    loadLesson();
+    signals.rewind++;
+    document.getElementById("check").classList.add("hidden");
+    document.getElementById("repair").classList.remove("hidden");
   }
 }
 
-/* ===== وضع الأمان ===== */
-function safeMode() {
-  safeBox.classList.toggle("hidden");
+/* ===== إعادة علاج ===== */
+function retry() {
+  if (signals.rewind >= 2) {
+    go(1);
+  } else {
+    go(2);
+  }
 }
 
-/* ===== إعادة تعيين ===== */
-function resetAll() {
-  if (confirm("هل تريد البدء من جديد؟")) {
-    localStorage.clear();
-    location.reload();
-  }
+/* ===== نجاح ===== */
+function goDone() {
+  document.getElementById("check").classList.add("hidden");
+  document.getElementById("done").classList.remove("hidden");
+  localStorage.setItem("achieved","true");
+}
+
+/* ===== حفظ ===== */
+function saveStep(n){
+  step = n;
+  localStorage.setItem("step", n);
 }
 </script>
 
