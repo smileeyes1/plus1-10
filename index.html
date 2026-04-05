@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>الداعم الخبير للمعلم – رياضيات الصف الثاني</title>
+<title>الداعم الخبير الهجين – رياضيات الصف الثاني</title>
 
 <style>
 body{
@@ -21,260 +21,110 @@ header{
   background:#0f4b3a;
   color:white;
   padding:28px;
-  border-radius:20px;
+  border-radius:18px;
 }
-header h1{margin:0}
-header p{opacity:.9}
-
-.unit{
-  margin-top:40px;
-  padding-right:18px;
-  border-right:8px solid #0f4b3a;
+.mode{
+  margin-top:20px;
+  background:#fff;
+  padding:14px;
+  border-radius:14px;
+}
+select{
+  font-size:16px;
+  padding:8px;
 }
 .lesson{
   background:white;
-  border-radius:18px;
-  padding:24px;
-  margin-top:24px;
+  border-radius:16px;
+  padding:22px;
+  margin-top:22px;
   box-shadow:0 3px 10px rgba(0,0,0,.08);
 }
-.lesson h3{
+h3{
   color:#0f4b3a;
-  margin-top:0;
 }
-
 .box{
   background:#eef5f2;
   border-right:5px solid #7fae9f;
-  padding:14px 18px;
+  padding:14px;
   margin:12px 0;
   border-radius:14px;
-}
-.label{
-  font-weight:bold;
-  color:#0f4b3a;
 }
 .warning{
   background:#fdecea;
   border-right:5px solid #d04545;
 }
-.note{
-  background:#fff7e5;
-  border-right:5px solid #e0b14a;
-}
-.success{
-  background:#e8f6ed;
-  border-right:5px solid #3d8c5a;
-}
+.hidden{display:none}
 </style>
+
+<script>
+function switchMode(){
+  const mode=document.getElementById("mode").value;
+  document.querySelectorAll(".face").forEach(e=>e.classList.add("hidden"));
+  document.querySelectorAll(".online").forEach(e=>e.classList.add("hidden"));
+  if(mode==="face") document.querySelectorAll(".face").forEach(e=>e.classList.remove("hidden"));
+  if(mode==="online") document.querySelectorAll(".online").forEach(e=>e.classList.remove("hidden"));
+}
+</script>
 </head>
 
 <body>
 <div class="container">
 
 <header>
-<h1>📘 الداعم الخبير للمعلم</h1>
-<p>
-نظام دعم مهني مبني على كتاب الرياضيات – الصف الثاني  
-لمرافقة المعلم في القرار، لا في الشرح.
-</p>
+<h1>📘 الداعم الخبير الهجين</h1>
+<p>نظام واحد يضبط سلوك المعلم في الحصة الوجاهية أو الإلكترونية</p>
 </header>
 
-<!-- ================= المبادئ العامة ================= -->
-<div class="unit">
-<h2>📌 مبادئ تشغيل الكتاب</h2>
+<div class="mode">
+<label>نمط الحصة: </label>
+<select id="mode" onchange="switchMode()">
+  <option value="face">وجاهية</option>
+  <option value="online">إلكترونية</option>
+</select>
+</div>
 
 <div class="lesson">
+<h3>درس: الجمع دون حمل</h3>
+
 <div class="box">
-<span class="label">مبدأ خبير:</span><br>
-لا أُنجز الصفحة… بل أُمكّن المفهوم.
+<strong>هدف خبير:</strong><br>
+فهم الجمع دون تجاوز عشرة، لا حفظ الإجراء.
+</div>
+
+<!-- وجاهي -->
+<div class="box face">
+<strong>تنفيذ وجاهي:</strong><br>
+– استخدم مكعبات أو أقلام.<br>
+– اجعل الطلبة يحرّكون الآحاد بأيديهم.<br>
+– لا تكتب النتيجة فورًا.
+</div>
+
+<!-- إلكتروني -->
+<div class="box online hidden">
+<strong>تنفيذ إلكتروني:</strong><br>
+– اعرض صورة مكعبات أو عدّادات.<br>
+– اطلب من طالب وصف ما يراه بالصوت.<br>
+– لا تشارك الشاشة بالحل.
 </div>
 
 <div class="box">
-<span class="label">الترتيب في الكتاب مُلزِم:</span><br>
-لا جمع مع حمل قبل دون حمل، ولا ضرب قبل العد القفزي.
+<strong>ماذا أقول (ثابت في الحالتين):</strong><br>
+«كم آحاد لدينا؟ هل تجاوزنا عشرة؟»
 </div>
 
 <div class="warning box">
-<span class="label">خطر شائع:</span><br>
-السرعة تُظهر تقدّمًا وهميًا وتُخفِي ضعفًا حقيقيًا.
-</div>
-</div>
-</div>
-
-<!-- ================= وحدة الأعداد ================= -->
-<div class="unit">
-<h2>وحدة الأعداد (ضمن 99 و 999)</h2>
-
-<div class="lesson">
-<h3>المقارنة بين عددين</h3>
-
-<div class="box">
-<span class="label">هدف الدرس الحقيقي:</span><br>
-التمييز حسب القيمة لا حسب الشكل.
-</div>
-
-<div class="box">
-<span class="label">ما أقول:</span><br>
-"أي العددين يمثّل كمية أكبر؟ كيف عرفت؟"
-</div>
-
-<div class="warning box">
-<span class="label">لا أفعل:</span><br>
-لا أستخدم (&gt; &lt; =) قبل الفهم.
-</div>
-
-<div class="note box">
-<span class="label">أنتقل عندما:</span><br>
-يبرّر الطالب لفظيًا دون تردّد.
+<strong>ضبط السلوك:</strong><br>
+إذا بدأتُ بالشرح قبل وصف طالب → أتوقف فورًا.
 </div>
 </div>
 
 <div class="lesson">
-<h3>العدد الزوجي والعدد الفردي</h3>
-
+<h3>قاعدة خبير ثابتة</h3>
 <div class="box">
-<span class="label">الفكرة:</span><br>
-التجميع اثنين-اثنين.
-</div>
-
-<div class="warning box">
-<span class="label">خطأ شائع:</span><br>
-حفظ التعريف دون تجريب.
-</div>
-</div>
-</div>
-
-<!-- ================= وحدة الجمع والطرح ================= -->
-<div class="unit">
-<h2>وحدة الجمع والطرح</h2>
-
-<div class="lesson">
-<h3>الجمع دون حمل</h3>
-
-<div class="box">
-<span class="label">الهدف:</span><br>
-جمع الآحاد والعشرات بدون تجاوز.
-</div>
-
-<div class="box">
-<span class="label">الدعم:</span><br>
-استخدم لوحة المنازل أو المحسوسات.
-</div>
-
-<div class="warning box">
-<span class="label">تدخّل فورًا إذا:</span><br>
-بدأ الطالب بالحمل تلقائيًا.
-</div>
-</div>
-
-<div class="lesson">
-<h3>الجمع مع الحمل</h3>
-
-<div class="box">
-<span class="label">الفكرة المحورية:</span><br>
-10 آحاد تعيد التنظيم لا “خطوة”.
-</div>
-
-<div class="note box">
-<span class="label">ما أقول:</span><br>
-"الآحاد أصبحت كثيرة، ماذا نفعل بها؟"
-</div>
-</div>
-
-<div class="lesson">
-<h3>الطرح دون / مع الاستلاف</h3>
-
-<div class="box">
-<span class="label">الهدف:</span><br>
-فهم النقصان قبل الخوارزمية.
-</div>
-
-<div class="success box">
-<span class="label">علامة نجاح:</span><br>
-الطالب يتحقق بالجمع تلقائيًا.
-</div>
-</div>
-</div>
-
-<!-- ================= وحدة الضرب والقسمة ================= -->
-<div class="unit">
-<h2>وحدة الضرب والقسمة</h2>
-
-<div class="lesson">
-<h3>العد القفزي</h3>
-
-<div class="box">
-<span class="label">دوره:</span><br>
-تمهيد منطقي للضرب.
-</div>
-
-<div class="warning box">
-<span class="label">لا:</span><br>
-لا أكتب جملة ضرب قبل النمط.
-</div>
-</div>
-
-<div class="lesson">
-<h3>مفهوم الضرب</h3>
-
-<div class="box">
-<span class="label">الفكرة:</span><br>
-مجموعات متساوية.
-</div>
-</div>
-
-<div class="lesson">
-<h3>مفهوم القسمة</h3>
-
-<div class="box">
-<span class="label">الأساس:</span><br>
-تقسيم بالتساوي باستخدام محسوسات.
-</div>
-</div>
-</div>
-
-<!-- ================= الهندسة والقياس والبيانات ================= -->
-<div class="unit">
-<h2>الهندسة – القياس – البيانات</h2>
-
-<div class="lesson">
-<h3>الأشكال الهندسية</h3>
-
-<div class="box">
-<span class="label">التركيز:</span><br>
-الخصائص (أضلاع – رؤوس).
-</div>
-</div>
-
-<div class="lesson">
-<h3>الطول والساعة</h3>
-
-<div class="box">
-<span class="label">مبدأ خبير:</span><br>
-نقارن ثم نقيس، نقرأ ثم نحسب.
-</div>
-</div>
-
-<div class="lesson">
-<h3>البيانات</h3>
-
-<div class="box">
-<span class="label">الهدف:</span><br>
-قراءة البيانات قبل تمثيلها.
-</div>
-</div>
-</div>
-
-<!-- ================= الإغلاق ================= -->
-<div class="unit">
-<h2>📍 تذكير خبير</h2>
-
-<div class="lesson">
-<div class="box">
-<span class="label">النجاح الحقيقي:</span><br>
-أن يفهم الطالب بطمأنينة، لا أن ينهي الصفحة.
-</div>
+الشرح لا يزيد بسبب الشاشة،  
+ولا يقل بسبب الصف.  
+الشرح مرتبط بالفهم فقط.
 </div>
 </div>
 
